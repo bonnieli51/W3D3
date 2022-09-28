@@ -76,28 +76,29 @@ end
 
 # p rec_fibonnaci(10)
 
-# bsearch([1, 3, 4, 5, 9], 5) # => 3
 def bsearch(arr, target)
-  middle_value = arr[arr.length / 2]
-  middle_index = arr.index(middle_value)
-  # left = arr[0...middle_index]
-  # right = arr[middle_index + 1..]
-  # p right
-
-  return nil if arr.length == 1 && middle_value != target
-  if target == middle_value
-    return arr.index(target)
-  elsif target < middle_value
-    bsearch(arr[0...middle_index], target)
-  elsif target > middle_value
-    bsearch(arr[middle_index+1..-1], target)
+    middle_value = arr[arr.length / 2]
+    middle_index = arr.index(middle_value)
+    left = arr[0...middle_index]
+    right = arr[middle_index + 1..]
+  
+    return nil if arr.length == 1 &&  middle_value != target
+    if target == middle_value
+      return arr.index(target)
+    elsif target < middle_value
+      bsearch(left, target)
+    elsif target > middle_value
+        return nil if bsearch(right, target) == nil
+        (left.length + 1) + bsearch(right, target)
+    end
   end
-end
 
-# p bsearch([1, 2, 3], 1) # => 0
-# p bsearch([2, 3, 4, 5], 3) # => 1
-# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+
+
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
 p bsearch([1, 3, 4, 5, 9], 5) # => 3
-# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
