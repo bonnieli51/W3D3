@@ -77,23 +77,23 @@ end
 # p rec_fibonnaci(10)
 
 def bsearch(arr, target)
-    middle_value = arr[arr.length / 2]
-    middle_index = arr.index(middle_value)
-    left = arr[0...middle_index]
-    right = arr[middle_index + 1..]
-  
-    return nil if arr.length == 1 &&  middle_value != target
-    if target == middle_value
-      return arr.index(target)
-    elsif target < middle_value
-      bsearch(left, target)
-    elsif target > middle_value
-        return nil if bsearch(right, target) == nil
-        (left.length + 1) + bsearch(right, target)
-    end
+  middle_value = arr[arr.length / 2]
+  middle_index = arr.index(middle_value)
+  left = arr[0...middle_index]
+  right = arr[middle_index + 1..]
+
+  return nil if arr.length == 1 && middle_value != target
+
+  if target == middle_value
+    arr.index(target)
+  elsif target < middle_value
+    bsearch(left, target)
+  elsif target > middle_value
+    return nil if bsearch(right, target).nil?
+
+    (left.length + 1) + bsearch(right, target)
   end
-
-
+end
 
 p bsearch([1, 2, 3], 1) # => 0
 p bsearch([2, 3, 4, 5], 3) # => 1
