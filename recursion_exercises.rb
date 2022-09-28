@@ -44,10 +44,10 @@ class Array
   end
 end
 
-robot_parts = [
-  %w[nuts bolts washers],
-  %w[capacitors resistors inductors]
-]
+# robot_parts = [
+#   %w[nuts bolts washers],
+#   %w[capacitors resistors inductors]
+# ]
 
 # robot_parts_copy = robot_parts.deep_dup
 # # shouldn't modify robot_parts
@@ -55,4 +55,23 @@ robot_parts = [
 # # but it does
 # p robot_parts[1] # => ["capacitors", "resistors", "inductors", "LEDs"]
 
-p [1, [2], [3, [4]]].deep_dup
+# p [1, [2], [3, [4]]].deep_dup
+
+def iter_fibonnaci(n)
+  result = [0, 1, 1]
+  return [0, 1].take(n) if n <= 2
+
+  result << (result[-1] + result[-2]) while result.length != n
+  result
+end
+
+# p iter_fibonnaci(0)
+
+def rec_fibonnaci(n)
+  return [0, 1].take(n) if n <= 2
+
+  seq = rec_fibonnaci(n - 1)
+  seq << (seq[-1] + seq[-2])
+end
+
+# p rec_fibonnaci(10)
